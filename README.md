@@ -47,3 +47,5 @@ rostopic echo /icp_registration/icp_result
 ### TODO
 
 - Download the desired base_link.pcd during `catkin build`by using `jsk_data`
+- Calculate position of PR2 based on the result of the icp registration
+- Evaluate the accuracy of positioning, including whether this package can be applied to object grasping.
