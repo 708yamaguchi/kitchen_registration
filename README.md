@@ -80,3 +80,7 @@ score: 0.000246252037682
 - Download the desired base_link.pcd during `catkin build`by using `jsk_data`
 - Calculate position of PR2 based on the result of the icp registration
 - Evaluate the accuracy of positioning, including whether this package can be applied to object grasping.
+
+- icp result の結果からpr2の二号館座標系における位置をだす.  
+- 数秒間サブスクライブして, mergeされた点群が一番多いときの点群を使う. 
+- kitchen全体のpcdじゃなくて, 変わりにくい場所のpcdだけつかう. 
