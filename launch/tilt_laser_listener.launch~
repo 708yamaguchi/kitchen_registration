@@ -1,0 +1,33 @@
+<launch>
+  <!-- Mainly copied from -->
+  <!-- https://github.com/jsk-ros-pkg/jsk_recognition/blob/master/jsk_pcl_ros/sample/sample_tilt_laser_listener.launch -->
+  <!-- TODO: use manager -->
+
+  <node name="sample_manager"
+        pkg="nodelet" type="nodelet"
+        args="manager"/>
+
+  <node name="laser_scan_assembler"
+        pkg="laser_assembler" type="laser_scan_assembler">
+    <remap from="scan" to="/tilt_scan"/>
+    <remap from="assemble_scans2" to="~assemble_scans2"/>
+    <rosparam>
+      fixed_frame: base_link
+      max_scans: 400
+    </rosparam>
+  </node>
+
+  <node name="tilt_laser_listener"
+        pkg="nodelet" type="nodelet"
+        args="standalone jsk_pcl/TiltLaserListener">
+    <remap from="~input" to="/joint_states"/>
+    <remap from="~assemble_scans2" to="laser_scan_assembler/assemble_scans2"/>
+    <rosparam>
+      use_laser_assembler: true
+      not_use_laser_assembler_service: false
+      joint_name: laser_tilt_mount_joint
+      twist_frame_id: laser_tilt_link
+      laser_type: tilt
+    </rosparam>
+  </node>
+</launch>
