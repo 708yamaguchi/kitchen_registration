@@ -13,7 +13,7 @@ Black grids: Reference pointcloud of the kitchen
 ### Create workspace
 
 ```bash
-mkdir ~/kitchen_ws/src
+mkdir ~/kitchen_ws/src -p
 cd ~/kitchen_ws/src
 git clone https://github.com/708yamaguchi/kitchen_registration.git
 rosdep install --from-paths . --ignore-src -y -r
@@ -27,7 +27,7 @@ catkin build kitchen_registration
 roslaunch kitchen_registration pointcloud_to_pcd.launch
 ```
 
-- When a pcd containing more than 60000 points is generated, stop the program with Ctrl-c.
+- When a pcd containing more than 60000 points is generated, stop the program with Ctrl-c. Note that the number depends on the situation.
   ```
   [ INFO] [1645802003.046638548]: Received 61668 data points in frame base_link with the following fields: x y z index
   ```
