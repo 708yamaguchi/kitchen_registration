@@ -2,6 +2,7 @@
   <!-- Mainly copied from -->
   <!-- https://github.com/jsk-ros-pkg/jsk_recognition/blob/master/jsk_pcl_ros_utils/sample/sample_pointcloud_to_pcd.launch -->
 
+  <arg name="laser_cloud" default="/tilt_laser_listener/large_cloud" />
   <arg name="manager" default="tilt_laser_manager"/>
 
   <include file="$(find kitchen_registration)/launch/tilt_laser_listener.launch">
@@ -12,7 +13,7 @@
   <!--       args="load jsk_pcl_utils/PointCloudToPCD $(arg manager)" output="screen" > -->
   <node name="pointcloud_to_pcd" type="nodelet" pkg="nodelet"
         args="standalone jsk_pcl_utils/PointCloudToPCD" output="screen" >
-    <remap from="~input" to="/tilt_laser_listener/output_cloud" />
+    <remap from="~input" to="$(arg laser_cloud)" />
     <rosparam subst_value="true">
       prefix: $(find kitchen_registration)/data/sample_pcd_
       fix_frame: /base_link

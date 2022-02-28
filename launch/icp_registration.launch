@@ -3,16 +3,18 @@
   <!-- https://github.com/jsk-ros-pkg/jsk_recognition/blob/master/jsk_pcl_ros/sample/sample_icp_registration.launch -->
 
   <arg name="gui" default="true"/>
+  <arg name="laser_cloud" default="/tilt_laser_listener/large_cloud" />
   <arg name="manager" default="tilt_laser_manager"/>
 
   <!-- input cloud -->
   <include file="$(find kitchen_registration)/launch/tilt_laser_listener.launch">
     <arg name="manager" value="$(arg manager)" />
+    <arg name="laser_cloud" value="$(arg laser_cloud)" />
   </include>
 
   <node name ="subsample_input" pkg="nodelet" type="nodelet"
       args="load pcl/VoxelGrid $(arg manager)" output="screen">
-      <remap from="~input" to="/tilt_laser_listener/output_cloud" />
+      <remap from="~input" to="$(arg laser_cloud)" />
     <rosparam>
       leaf_size: 0.008
     </rosparam>

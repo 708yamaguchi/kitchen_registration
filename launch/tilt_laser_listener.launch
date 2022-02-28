@@ -2,6 +2,8 @@
   <!-- Mainly copied from -->
   <!-- https://github.com/jsk-ros-pkg/jsk_recognition/blob/master/jsk_pcl_ros/sample/sample_tilt_laser_listener.launch -->
 
+  <arg name="laser_cloud" default="/tilt_laser_listener/large_cloud" />
+
   <arg name="manager" default="tilt_laser_manager" />
   <node name="$(arg manager)" pkg="nodelet" type="nodelet" args="manager"/>
 
@@ -27,5 +29,10 @@
       twist_frame_id: laser_tilt_link
       laser_type: tilt
     </rosparam>
+  </node>
+
+  <node name="extract_large_pointcloud" pkg="kitchen_registration"
+        type="extract_large_pointcloud.py">
+    <remap from="~output" to="$(arg laser_cloud)" />
   </node>
 </launch>
