@@ -1,7 +1,7 @@
 <launch>
   <!-- Mainly copied from -->
   <!-- https://github.com/jsk-ros-pkg/jsk_recognition/blob/master/jsk_pcl_ros_utils/sample/sample_pointcloud_to_pcd.launch -->
-
+n
   <arg name="laser_cloud" default="/tilt_laser_listener/large_cloud" />
   <arg name="manager" default="tilt_laser_manager"/>
 

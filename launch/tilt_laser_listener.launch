@@ -34,5 +34,8 @@
   <node name="extract_large_pointcloud" pkg="kitchen_registration"
         type="extract_large_pointcloud.py">
     <remap from="~output" to="$(arg laser_cloud)" />
+    <rosparam>
+      duration: 30 <!-- how many seconds to collect laser pointcloud -->
+    </rosparam>
   </node>
 </launch>

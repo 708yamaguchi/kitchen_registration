@@ -12,7 +12,7 @@ class ExtractLargePointcloud(object):
             self.cloud_callback)
         self.pub = rospy.Publisher(
             '~output', PointCloud2, queue_size=1)
-        duration = rospy.get_param('~duration', 10)
+        duration = rospy.get_param('~duration', 30)
         rospy.Timer(rospy.Duration(duration), self.timer_callback)
         self.cloud_msg = None
         self.cloud_len = 0
